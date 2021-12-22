@@ -1,0 +1,39 @@
+
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+class Solution(object):
+    def minDiffInBST(self, root):
+        self.vals = []
+        self.inOrder(root)
+        return min([self.vals[i + 1] - self.vals[i] for i in range(len(self.vals) - 1)])
+
+    def inOrder(self, root):
+        if not root:
+            return 
+        self.inOrder(root.left)
+        self.vals.append(root.val)
+        self.inOrder(root.right)
+
+if __name__ == '__main__':
+    a = TreeNode(1)
+    a.left = TreeNode(0)
+    a.right = TreeNode(48)
+    a.right.left = TreeNode(12)
+    a.right.right = TreeNode(49)
+
+    s = Solution()
+    ans = s.minDiffInBST(a)
+    print(ans)
+
+
+
+
+    # a = TreeNode(4)
+    # a.left = TreeNode(2)
+    # a.right = TreeNode(6)
+    # a.left.left = TreeNode(1)
+    # a.left.right = TreeNode(3)
